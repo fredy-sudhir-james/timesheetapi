@@ -1,17 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+var createError  = require('http-errors');
+var express      = require('express');
+var path         = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var config = require('./config');
+var logger       = require('morgan');
+var config       = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var taskRouter  = require( './routes/taskRouter' );
 
 const mongoose = require('mongoose');
-const url = config.mongoUrl;
-const connect = mongoose.connect( url );
+const url      = config.mongoUrl;
+const connect  = mongoose.connect( url );
 
 connect.then ( db => {
 	console.log( "Connected successfully to the server" );
@@ -28,11 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	next();
-});
 
 // Default routers express generator generated. Retained for now
 app.use('/', indexRouter);

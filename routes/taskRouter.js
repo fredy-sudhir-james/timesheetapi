@@ -43,6 +43,15 @@ taskRouter.route( '/:taskId' )
 		res.json( {"updated": true, "updateTask": task} );
 	}, ( err ) => next( err ) )
 	.catch( ( err ) => next( err ) );
+} )
+.delete( cors.cors, ( req, res, next ) => {
+	Tasks.findByIdAndRemove( req.params.taskId )
+	.then( ( response ) => {
+		res.statusCode = 200;
+		res.setHeader('Content-Type', 'application/json');
+		res.json( response );
+	}, ( err ) => next( err ) )
+	.catch( ( err ) => next( err ) );
 } );
 
 module.exports = taskRouter;
