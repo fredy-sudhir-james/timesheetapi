@@ -1,2 +1,6 @@
-#Ignore all node_modules
+# Ignore these folders and it's contents.
 node_modules
+coverage
+
+# Ignore these files
+.env

@@ -16,7 +16,7 @@ taskRouter.route( '/' )
 		res.statusCode = 200;
 		res.setHeader( 'Content-Type', 'application/json' )
 		res.json( tasks );
-	}, ( err ) => next( err ) )
+	} )
 	.catch( ( err ) => next( err ) );
 } )
 .post( cors.cors, ( req, res, next ) => {
@@ -26,7 +26,7 @@ taskRouter.route( '/' )
 		res.statusCode = 200;
 		res.setHeader('Content-Type', 'application/json');
 		res.json(task);
-	}, ( err ) => next( err ) )
+	} )
 	.catch( ( err ) => next( err ) );
 } );
 
@@ -41,7 +41,7 @@ taskRouter.route( '/:taskId' )
 		res.statusCode = 200;
 		res.setHeader('Content-Type', 'application/json');
 		res.json( {"updated": true, "updateTask": task} );
-	}, ( err ) => next( err ) )
+	} )
 	.catch( ( err ) => next( err ) );
 } )
 .delete( cors.cors, ( req, res, next ) => {
@@ -50,7 +50,7 @@ taskRouter.route( '/:taskId' )
 		res.statusCode = 200;
 		res.setHeader('Content-Type', 'application/json');
 		res.json( response );
-	}, ( err ) => next( err ) )
+	} )
 	.catch( ( err ) => next( err ) );
 } );
 

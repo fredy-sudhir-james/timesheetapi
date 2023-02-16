@@ -3,15 +3,12 @@ var express      = require('express');
 var path         = require('path');
 var cookieParser = require('cookie-parser');
 var logger       = require('morgan');
-var config       = require('./config');
+require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var taskRouter  = require( './routes/taskRouter' );
 
 const mongoose = require('mongoose');
-const url      = config.mongoUrl;
-const connect  = mongoose.connect( url );
+const connect  = mongoose.connect( process.env.NODE_ENV === 'test' ? process.env.MONGODB_TEST_URI : process.env.MONGODB_URI );
 
 connect.then ( db => {
 	console.log( "Connected successfully to the server" );
@@ -28,10 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Default routers express generator generated. Retained for now
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // Custom tasks router
 app.use( '/tasks', taskRouter );
