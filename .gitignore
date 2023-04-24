@@ -4,3 +4,4 @@ coverage
 
 # Ignore these files
 .env
+public/invoices

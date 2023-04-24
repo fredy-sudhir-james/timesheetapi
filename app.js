@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger       = require('morgan');
 require('dotenv').config();
 
-var taskRouter  = require( './routes/taskRouter' );
+var taskRouter     = require( './routes/taskRouter' );
+var invoiceRouter  = require( './routes/invoiceRouter' );
 
 const mongoose = require('mongoose');
 const connect  = mongoose.connect( process.env.NODE_ENV === 'test' ? process.env.MONGODB_TEST_URI : process.env.MONGODB_URI );
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Custom tasks router
 app.use( '/tasks', taskRouter );
+app.use( '/invoices', invoiceRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

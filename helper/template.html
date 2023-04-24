@@ -1,0 +1,17 @@
+<html>
+    <head>
+        Dynamic HTML to PDF
+    </head>
+    <body>
+        <h1>Hi</h1>
+        <div>
+			{{#each invoice}}
+            <ul>
+				{{#if this.date}}
+				<li>Invoice date {{this.date}}</li>
+				{{/if}}
+			</ul>
+			{{/each}}
+        </div>
+    </body>
+</html>
